@@ -1,0 +1,24 @@
+{%extends 'home.html'%}
+{%load static%}
+{%block nav%}
+<body>
+  <div class="container">
+    <div style="float: left;width: 30%;" >
+      <h3>{{video.hidden_title}}</h3>
+       <video style="float: left;"  poster="{{video.thumbnail.url}}" autoplay  width="100%" controls    >
+      <source src="{{hide}}" type="video/mp4">
+    </video></div>
+    <div style="float: right;width: 30%;" >
+      <h3>{{video.title}}</h3>
+      <video style="float:right;" poster="{{video.thumbnail.url}}" autoplay controls width="100%"   height="auto" >
+      <source src="{{org}}" type="video/mp4">
+    </video></div>
+    
+  </div>
+  
+  <script>
+   
+        $("#watch").addClass("active");
+    </script>
+</body>
+{%endblock%}

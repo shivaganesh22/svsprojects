@@ -1,0 +1,63 @@
+{%extends 'admin/home.html'%}
+{%load static%}
+{%block nav%}
+
+<style>
+
+</style>
+<body>
+    <div class="card container" style="width: 40%;">
+        <div class="card-body">
+                <center><h5 class="card-title " >Add Video</h5></center>
+          <hr>
+            <form action="" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div style="height: 300px; overflow: auto;" >
+                <h5>Original Video</h5>
+                <hr>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Title</span>
+                    <input type="text" class="form-control" name="title" placeholder="Enter title" aria-label="Username" aria-describedby="basic-addon1" required>
+                  </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Video URL</span>
+                    <input type="url"  class="form-control" name="video_url" placeholder="Enter URL" aria-label="Username" aria-describedby="basic-addon1" required>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Thumbnail</span>
+                    <span class="form-control" id="formFile">{{form.thumbnail}}</span>
+                   
+                  </div>
+                  <hr>
+                  <h5>Hidden Video</h5>
+                  <hr>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Title</span>
+                    <input type="text" class="form-control" name="hidden_title" placeholder="Enter title" aria-label="Username" aria-describedby="basic-addon1" required>
+                  </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Video URL</span>
+                    <input type="url"  class="form-control" name="hidden_video_url" placeholder="Enter URL" aria-label="Username" aria-describedby="basic-addon1" required>
+                  </div>
+                  <hr>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Quiz ID</span>
+                    
+                    <span class="form-control" >{{form.quiz}}</span>
+
+                  </div>
+              
+                  <hr>
+                </div>
+                  <center><button type="submit" class="btn btn-success">Submit</button></center>
+            </form>
+
+        </div>
+    </div>
+    
+    <script>
+        $("#videos").addClass("active");
+    
+        </script>
+</body>
+{%endblock%}

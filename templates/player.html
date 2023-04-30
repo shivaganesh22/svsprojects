@@ -1,0 +1,23 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block nav%}
+<body>
+  <div class="container">
+    
+    <video id="{{linktype}}"  poster="{{video.thumbnail.url}}"  controls autoplay width="80%" height="auto" >
+      <source src="{{video_url}}" type="video/mp4">
+    </video>
+  </div>
+  
+  <script>
+    var video = document.getElementById("hide");
+    video.play();
+    video.controls=false;
+    
+    video.onended = function() {
+      window.location.href = "/quiz/{{video.id}}/{{video.quiz.id}}";
+    };
+        $("#watch").addClass("active");
+    </script>
+</body>
+{%endblock%}

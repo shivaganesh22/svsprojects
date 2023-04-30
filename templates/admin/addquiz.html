@@ -1,0 +1,85 @@
+{%extends 'admin/home.html'%}
+{%load static%}
+{%block nav%}
+
+<style>
+  .aa {
+    display: block;
+    height: 300px;
+    overflow-y: auto;
+    float: left;
+  }
+
+  .ques {
+    display: block;
+  }
+</style>
+
+<body>
+  <div class="card container" style="width: 40%;">
+    <div class="card-body">
+      <center>
+        <h5 class="card-title ">Create Quiz</h5>
+      </center>
+      <hr>
+      <form action="" method="post">
+        {%csrf_token%}
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Quiz Title</span>
+          {{quiz_form.title}}
+        </div>
+        <hr>
+        <div style="height: 300px; overflow: auto;">
+          <h2>Questions </h2>
+          {{ questions_formset.management_form }}
+          {% for form in questions_formset %}
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Question {{forloop.counter}}</span>
+            {{form.question}}
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Option 1</span>
+            {{form.option1}}
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Option 2</span>
+            {{form.option2}}
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Option 3</span>
+            {{form.option3}}
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Option 4</span>
+            {{form.option4}}
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Answer </span>
+            {{form.answer}}
+          </div>
+          <div class="input-group mb-3">
+            <span  class="" style="margin-left: 5px;margin-right: 5px;">{{form.DELETE}}</span>
+            <label class="form-check-label" for="flexCheckDefault">
+              Delete
+            </label>
+          </div>
+
+          {% endfor %}
+
+
+        </div>
+        <hr>
+        <center><button type="submit" class="btn btn-success">Submit</button></center>
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+
+
+    $("#quizes").addClass("active");
+
+  </script>
+</body>
+{%endblock%}

@@ -1,0 +1,149 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block nav%}
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.8/css/all.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700'>
+<link rel="stylesheet" href="{%static 'css/vid.css'%}">
+
+</head>
+<style>
+  .content {
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 100%;
+  padding: 15px 15px;
+  border-top: 1px solid #ddd;
+  overflow-y: scroll;
+}
+
+.videos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.video {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.thumbnail {
+  width: 100%;
+  
+}
+
+.thumbnail img {
+  object-fit: cover;
+  height: 94%;
+  width: 100%;
+}
+.author img {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.details {
+  display: flex;
+}
+ 
+.title {
+  display: flex;
+  margin-top: 10px;
+
+  flex-direction: column;
+}
+.video:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+}
+ 
+.title h3 {
+  color: rgb(3, 3, 3);
+  line-height: 18px;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+ 
+.title a,
+span {
+  text-decoration: none;
+  color: rgb(96, 96, 96);
+  font-size: 12px;
+}
+</style>
+<body>
+  
+     
+
+
+
+
+
+
+
+  <div style="height: 90%; overflow: auto;">
+<div class="container">
+  <div class="row">
+    
+    {%for video in videos%}
+    
+    <div class="col-12 col-md-6 col-lg-4">
+      <a href="/video/{{video.id}}">
+      <div class="card" style="background-color: transparent;">
+        <div class="card-body">
+          <div class="video">
+            <div class="thumbnail">
+               <img src="{{video.thumbnail.url}}" style="border-radius: 15px;" alt="" />
+             </div>
+     
+               <div class="details">
+                  <div class="author">
+                     <img src="{%static 'images/images.png'%}" alt="" />
+                  </div>
+                  <div class="title">
+                     <h2 style="color:white;font-style:inherit;">
+                        {{video.title}}
+                      </h3>
+                  </div>
+                 
+                </div>
+               
+              </div>
+        </div>
+      </div>
+      </a>
+    </div>
+    {%endfor%}
+    </div>
+  </div>
+</div>
+
+
+
+<!-- partial -->
+  <script  src="{%static 'js/vid.js'%}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    
+<script>
+    
+    $("#watch").addClass("active");
+</script>
+</body>
+{%endblock%}

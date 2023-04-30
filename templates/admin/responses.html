@@ -1,0 +1,92 @@
+{%extends 'admin/home.html'%}
+{%load static%}
+{%block nav%}
+
+<style>
+  .aa {
+    display: block;
+    height: 300px;
+    overflow-y: auto;
+    float: left;
+  }
+
+  .ques {
+    display: block;
+  }
+  td{
+  color: black;
+  font-size: large;
+}
+th{
+  font-size: large;
+}
+</style>
+<head>
+    <link rel="stylesheet" href="{%static 'css/quizes.css'%}">
+  </head>
+<body>
+  <div class="card container" >
+    <div class="card-body">
+      <center>
+        <h5 class="card-title ">Responses </h5>
+      </center>
+      
+      <hr>
+      <center>
+        <h5 class="card-title ">Name: {{result.student | title }} | {{quiz.title | title}} | Score {{result.score}} </h5>
+      </center>
+    </div>
+  </div>
+  <div style="height: 60%; overflow: auto;">
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+            <tr>
+                <th >SNO</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Orginal Answer</th>
+                <th>Result</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+             
+              {% for i in responses %}
+            <tr>
+             
+                <td><h5>{{forloop.counter}}</h5></td>
+                <td><h5>{{i.question.question | title}}</h5></td>
+                <td><h5>{{i.response}}</h5></td>
+                <td><h5>{{i.question.answer}}</h5></td>
+                
+                <td>
+                    {% if i.response == i.question.answer %}
+                    <font color="green">Correct</font>
+                    {% else %} 
+                    <font color="red">Incorrect</font>
+                    {% endif %}
+                </td>
+                {% empty %}
+            <td>No Responses available.</td>
+        </tr>
+            {% endfor %}
+            
+                
+            
+            <tbody>
+        </table>
+    </div>
+  </div>
+
+    <canvas id="demo-canvas" ></canvas>
+
+
+  <script>
+
+
+    $("#quizes").addClass("active");
+
+  </script>
+</body>
+{%endblock%}

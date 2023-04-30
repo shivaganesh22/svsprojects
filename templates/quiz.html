@@ -1,0 +1,68 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block nav%}
+<body>
+    <div class="card container" style="width: 40%;">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title ">{{quiz.title | upper}}</h5>
+          </center>
+          <hr>
+          <form action="" method="post">
+            {%csrf_token%}
+            <div style="height: 320px; overflow: auto;">
+            {% for question in questions %}
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Question {{forloop.counter}}</span>
+                <span class="form-control">{{question.question | title }}</span>
+              </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="{{ question.option1 }}" name="question_{{ question.pk }}" value="option1" required>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  {{ question.option1 |title}}
+                </label>
+              </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="{{ question.option2 }}" name="question_{{ question.pk }}" value="option2" required>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  {{ question.option2 |title}}
+                </label>
+              </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="{{ question.option3 }}" name="question_{{ question.pk }}" value="option3" required>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  {{ question.option3 |title }}
+                </label>
+              </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="{{ question.option4 }}" name="question_{{ question.pk }}" value="option4" required>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  {{ question.option4 |title }}
+                </label>
+              </div>
+    
+              {% endfor %}
+    
+    
+            </div>
+            <hr>
+            <center><button type="submit" class="btn btn-success">Submit</button></center>
+          </form>
+    
+        </div>
+      </div>
+    
+
+
+
+
+
+
+
+
+
+    <script>
+        $("#watch").addClass("active");
+    </script>
+</body>
+{%endblock%}

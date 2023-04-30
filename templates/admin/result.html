@@ -1,0 +1,63 @@
+{%extends 'admin/home.html'%}
+{%load static%}
+{%block nav%}
+<style>
+
+td{
+  color: black;
+  font-size: large;
+}
+th{
+  font-size: large;
+}
+</style>
+<head>
+  <link rel="stylesheet" href="{%static 'css/quizes.css'%}">
+</head>
+<body>
+
+    
+  <div style="height: 60%; overflow: auto;">
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th >SNO</th>
+            <th>Name</th>
+            <th>Total Score</th>
+            <th>Obtained Score</th>
+            <th>View Responses</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+          {% for i in result %}
+        <tr>
+         
+            <td><h5>{{forloop.counter}}</h5></td>
+            <td><h5>{{i.student | title}}</h5></td>
+            <td><h5>{{i.total}}</h5></td>
+            <td><h5>{{i.score}}</h5></td>
+            <td>
+              <a href="/a/quiz/response/{{i.id}}" class="btn btn-warning">View</a>
+            </td>
+            {% empty %}
+        <td>No Results available.</td>
+        {% endfor %}
+        </tr>
+        
+        <tbody>
+    </table>
+</div>
+  </div>
+      
+      
+
+<canvas id="demo-canvas" ></canvas>
+
+    <script>
+    $("#quizes").addClass("active");
+
+    </script>
+</body>
+{%endblock%}

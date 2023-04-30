@@ -1,0 +1,86 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block nav%}
+<style>
+
+td{
+  color: black;
+  font-size: large;
+}
+th{
+  font-size: large;
+}
+</style>
+<head>
+  <link rel="stylesheet" href="{%static 'css/quizes.css'%}">
+</head>
+<body>
+
+
+      <div style="height: 80%; overflow: auto;">
+  
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th >SNO</th>
+            <th>Title</th>
+            <th>Questions</th>
+            
+            <th>Your Score</th>
+            <th>Attended</th>
+            <th>Attempt</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+          
+          {% for quiz in quizes %}
+        <tr>
+         
+            <td><h5>{{forloop.counter}}</h5></td>
+            <td><h5>{{quiz.title | upper}}</h5></td>
+            <td><h5>{{quiz.num_q}}</h5></td>
+            <td><h5>
+              {%if quiz.score%}
+              {{quiz.score}}
+              {%else%}
+              Not Attended
+              {%endif%}
+            </h5></td>
+            <td><h5>{%if quiz.res%}
+              {{quiz.res}}
+              {%else%}
+              0
+              {%endif%}</h5></td>
+           
+            <td>
+              {%if quiz.score%}
+              <a href="/video/reattempt/{{quiz.vid_id}}" class="btn btn-success">Re-Attempt</a>
+              {%else%}
+              <a href="/video/{{quiz.vid_id}}" class="btn btn-success">Attempt</a>
+              {%endif%}
+
+            </td>
+            {% empty %}
+        <td>No Quizzes available.</td>
+      </tr>
+        {% endfor %}
+       
+        
+        
+        <tbody>
+    </table>
+</div>
+      
+</div>     
+  <canvas id="demo-canvas" ></canvas>
+
+
+
+    <script>
+    $("#quizes").addClass("active");
+
+    </script>
+</body>
+{%endblock%}
